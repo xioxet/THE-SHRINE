@@ -1,3 +1,10 @@
-# group notes
+# THE-SHRINE
 
-hi ! feel free to dump any notes you have into the repo by making a pull req. the more the merrier!!!
+SACRIFICE YOUR NOTES TO THE SHRINE
+THE SHRINE DEMANDS PULL REQUESTS AND NEATLY FORMATTED MARKDOWN FILES
+
+**THE SHRINE HUNGERS FOR BLOOD**
+
+_(group notes repository for our batch! anyone is free to make a pull req and submit your notes for the betterment of the cohort!!!)_
+
+
