@@ -12,6 +12,7 @@ $$
 
 # Alternating signs
 1, -1, 1, -1, 1, -1
+
 $$
 a_n = (-1)^{n+1}
 $$
@@ -57,6 +58,7 @@ $$
 $$\frac{a}{1 - r}$$
 # Division Theorem:
 Let `a` be an integer and `d` a positive number
+
 $$
 0 \ge r < d \text{, such that } a = dq+r
 $$
@@ -65,6 +67,7 @@ $$
 $$a - b = m(q_1 - q_2)$$
 
 `a` is congruent to `b` modulo `m` if:
+
 $$
 a \bmod{m} = b \bmod{m}
 $$
@@ -83,6 +86,7 @@ $$
 
 # Basic modular arithmetic: Theorem2:
 let m be a positive integer. if `a` congruent `b` mod `m` and `c` congruent `d` mod `m` then:
+
 $$
 ac \equiv db \bmod m
 $$
