@@ -1,16 +1,16 @@
-# **Arithmetic sequence**
+# Arithmetic sequence
 Finding **Arithmetic sequence** (difference between consecutive terms is constant plus or minus)
 $$
 a_n = a_1 + (n-1)d
 $$
 
 
-# **Geometric sequence** 
+# Geometric sequence
 $$
 a_n = ar^{n-1}
 $$
 
-# Alternating signs!!!!
+# Alternating signs
 1, -1, 1, -1, 1, -1
 $$
 a_n = (-1)^{n+1}
@@ -55,3 +55,60 @@ $$
 
 # Summation of infinite Sequence
 $$\frac{a}{1 - r}$$
+# Division Theorem:
+Let `a` be an integer and `d` a positive number
+$$
+0 \ge r < d \text{, such that } a = dq+r
+$$
+
+# Congruent modulo: Formula:
+$$a - b = m(q_1 - q_2)$$
+
+`a` is congruent to `b` modulo `m` if:
+$$
+a \bmod{m} = b \bmod{m}
+$$
+Thus,
+$$
+a \equiv b \bmod{m}
+$$
+$$
+m \mid(a-b)
+$$
+
+# Basic modular arithmetic: Theorem 1
+$$
+a +c \equiv b+d \bmod m
+$$
+
+# Basic modular arithmetic: Theorem2:
+let m be a positive integer. if `a` congruent `b` mod `m` and `c` congruent `d` mod `m` then:
+$$
+ac \equiv db \bmod m
+$$
+
+# Basic modular arithmetic: Exponentiation rule: 
+$$
+a^b \bmod m \equiv ((a \bmod m)^b) \bmod m
+$$
+
+
+# Greatest Common Divisor Formula: 
+$$
+\begin{align}
+\gcd(a,b) = p_1^{\min(a_1, b_1)} p_2^{\min(a_1, b_1)}...p_n^{\min(a_n, b_n)}
+\end{align}
+$$
+
+# Least Common multiple(LCD): Formula: 
+$$
+\begin{align}
+lcm(a,b) = p_1^{\max(a_1, b_1)} p_2^{\max(a_1, b_1)}...p_n^{\max(a_n, b_n)}
+\end{align}
+$$
+
+# GCD and LCM Formula:
+$$
+gcd(a,b)×lcm(a,b)=a×b
+$$
+
