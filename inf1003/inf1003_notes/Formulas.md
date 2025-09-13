@@ -1,5 +1,6 @@
 # Arithmetic sequence
 Finding **Arithmetic sequence** (difference between consecutive terms is constant plus or minus)
+
 $$
 a_n = a_1 + (n-1)d
 $$
