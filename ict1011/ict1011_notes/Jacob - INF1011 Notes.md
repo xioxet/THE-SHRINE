@@ -1,4 +1,4 @@
-# Assesments
+Assesments
 
 - lab quiz: 30
 >- lab 2: 5%
@@ -223,7 +223,7 @@ write to R1[0] by enabling latch input control line
 
 ## The CPU (Chpt 2)
 
-![program_development_process](.\jacob-images\program_development_process.png)
+![program_development_process](jacob-images/program_development_process.png)
 
 Hardware programming:  
 > actual electric voltage in wire  
@@ -235,10 +235,10 @@ Software programming:
 > Sequence of Arithmetic and logic functions by logic gates and chips  
 > result
 
-![(Hardware_vs_software_programming](.\jacob-images\Hardware_vs_software_programming.png)  
+![(Hardware_vs_software_programming](jacob-images/Hardware_vs_software_programming.png)  
 
 e.g.  
-![](.\jacob-images\Hardware_vs_software_eg.png)
+![](jacob-images/Hardware_vs_software_eg.png)
 
 ### The von Neuman Architecture  
 
