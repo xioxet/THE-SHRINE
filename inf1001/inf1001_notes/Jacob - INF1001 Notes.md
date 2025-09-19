@@ -1,4 +1,4 @@
-# Lecture 1: Digital Age
+# Topic 1: Digital Age
 
 ## Computers through the ages
 
@@ -81,7 +81,7 @@ Usually 8, 10, 12, 16, 24
 
 
 
-# Lecture 2: Number systems
+# Topic 2: Number systems
 
 ## Positional Number systems
 
@@ -198,3 +198,95 @@ Note Moved to right (1) times, This will be the exponent
 
 NOTE: Exponent is unsigned.  
 Exponent is how many times you shift the binary point to the left, in this case moved right so is -1 and change exponent bias 127 to +
+
+## Gray code
+
+only one bit change at a time  
+00 -> 01 -> 11 -> 10  
+cannot go from 01 -> 10
+
+## Serial vs Parallel
+
+Serial: transfer one bit at a time  
+is slow  
+use case: longer range transmission (USB, TCP/IP, RS232, SATA)  
+
+Parallel: transfer multiple bits at once  
+is fast  
+Subhect to synchronisation issues
+use case: short range communication (ATAPI, internal buses)
+
+## Parity
+
+used to identify errors by adding 1 bit to the data  
+Parity bit is attached to a group of bits to make the total number of 1s in a group always even (Even parity) or always odd (Odd parity).  
+
+Parity type is agreed between users before sending data
+if error detected, parity cannot recover the data.
+Parity can be added as LSB or MSB, depend on user agreement
+
+Even: 1011 011[1]
+Odd : 1011 011[0]
+
+Other error detection: Cyclic redundancy check (CRC), Hamming code
+
+
+# Topic 3: Combinatorial Circuits
+
+Generally: Ture = 1, False = 0  
+Logic circuits types:
+- Combinatorial  
+- - Output depends only on current inputs
+- Sequential
+- - Output depends not only on current inputs but past sequence of inputs
+
+Basic logic ops:
+- AND
+- OR
+- NOT
+ 
+## AND
+
+$Z_{AND} = A . B = A ∧ B$
+
+0 AND 0 = 0
+0 AND 1 = 0
+1 AND 0 = 0
+1 AND 1 = 1
+
+## NAND
+
+NOT AND
+
+$Z_{NAND} = \bar{A . B} =$
+0 NAND 0 = 1
+0 NAND 1 = 1
+1 NAND 0 = 1
+1 NAND 1 = 0
+
+## OR
+
+$Z_{OR} = A + B = A ∨ B$
+
+0 OR 0 = 0
+0 OR 1 = 1
+1 OR 0 = 1
+1 OR 1 = 1
+
+## NOR
+
+NOT OR
+
+$Z_{NOR} = \bar{A + B} =$
+0 NOR 0 = 1
+0 NOR 1 = 0
+1 NOR 0 = 0
+1 NOR 1 = 0
+
+![Base Gates](<../../inf1003/inf1003_notes/jacob-images/Base-Gates.png>)
+
+## Boolean algebra Characteristics:
+
+Commutativity (flip inputs does not change outcome): x.y = y.x, x+y = y+x
+Associativity (grouping operations does not change outcome): (x.y).z = x.(y.z), (x+y)+z = x+(y+z)
+Distributivity ()

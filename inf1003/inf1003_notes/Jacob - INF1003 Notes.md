@@ -109,7 +109,7 @@ $= \frac{100[1+100]}{2}$
 $= 5050$
 
 **Geometric Series Summation**  
-when n < ∞ :$$S_n = \frac{a(r^n-1)}{r-1} $$
+when n < ∞ :$$S_n = \frac{a(r^n-1)}{r-1}$$
 
 when n approach ∞:
 $$lim_{n->∞},\ \ \ S_n = \frac{a}{r-1}$$
@@ -207,36 +207,41 @@ $$r = a \mod d$$
 
 ≡ triple bar means congruent
 
-$a ≡ b \mod m$  
+$a ≡ b \mod{m}$  
 is same as  
-$a \mod m = b \mod m$
+$a \mod{m} = b \mod{m}$
 
 **Theorem**  
 - let $m$ be +ve int  
-- if
-- $$a ≡ b \mod m\ AND\ c ≡ d \mod m$$
+- if $a ≡ b \mod m$ and $c ≡ d \mod m$
 - then  
-- $$a + c ≡ (b + d) \mod m$$
+- $a + c ≡ b + d (\mod{m})$  
 - and  
-- $$a*c = (b*d) \mod m$$
+- $a*c = b*d (\mod{m})$
 
-$98\ mod\ 97 = 1$  
-$9800\ mod\ 97 ≡ 100\ mod\ 97 = 3$  
-$98^5\ mod\ 97 ≡ 98\ mod\ 97 = 1$  
-$10001\ mod\ 97 ≡ 301\ mod\ 97 ≡ 10$
+Other equations:
+- $(a+b)\mod{m} = ((a\mod{m})+(b\mod{m}))\mod{m}$
+- $(a-b)\mod{m} = ((a\mod{m})-(b\mod{m}))\mod{m}$
+- $(a*b)\mod{m} = ((a\mod{m})*(b\mod{m}))\mod{m}$
+- $a^b\mod{m} = (a\mod{m})^b\mod{m}$
+
+$98 \mod{97} = 1$  
+$9800 \mod{97} ≡ 100 \mod{97} = 3$  
+$98^5 \mod{97} ≡ 98 \mod {97} = 1$  
+$10001 \mod{97} ≡ 301 \mod{97} ≡ 10$
 
 ## Primes
 
 **Define prime**  
-p > 1 and only positive factor is 1 and p  
-if int > 1 and not prime, is a composite
+$p > 1$ and only positive factor is 1 and p  
+if int $> 1$ and not prime, is a composite
 
 **Theorem**  
-every int > 1 can be written uniquely as a prime or as a product of 2 or more primes, where prime factors are written in order of non-decreasing size
+every int $> 1$ can be written uniquely as a prime or as a product of 2 or more primes, where prime factors are written in order of non-decreasing size
 
 **Theorem**  
-if n is composite int,  
-then n has prime divisor <= sqrt(n)
+if $n$ is composite int,  
+then n has prime divisor $\leq \sqrt n$
 
 ^ can use theorem to check is num is prime, using brute force method called trial division
 divide n by all primes no exceeding $\sqrt n$  
@@ -289,12 +294,15 @@ $gcd(a,b) = p_1^{max(a1,b1)},p_2^{max(a2,b2)}, ... ,p_n^{max(an,bn)}$
 
 where $max(x,y)$ chooses the larger of $x$ and $y$
 
+$a,b$
+$gcd(a,b) * lcm(a,b) = ab$
+
 ## Euclidian Algorithm
 
 ### Lemma
 
 Let $a = dq+r$  
-where $a$, $d$, $q$ and $r are int,
+where $a$, $d$, $q$ and $r$ are int,
 
 Then, $$gcd(a,d) = gcd(d,r)$$  
 
@@ -368,7 +376,138 @@ $$s=4, t=-5$$
 $$gcd(252,198) = 252(4) + 198(-5)$$
 
 
+# Topic 3 Combinatronics
 
+Counting and set theory  
+
+## Important Formulas
+
+$$n_1n_2$$
+
+$$n_1 +n_2$$
+
+
+$n_1 + n_2$ - (ways common to $n_1$ and $n_2$)
+
+$$|A_1 \cup A_2 |= |A_1| + |A_2| - |A_1 \cap A_2|$$
+
+$$\frac{n}{d}$$
+
+$$_nP_r =\frac{n!}{(n-r)}$$
+
+$\frac{N}{k}$, (round up to closest integer)
+
+## Product Rule
+
+Task1 got $n_1$ ways to do.  
+For each way in $n_1$, there are $n_2$ ways to do task2.  
+Thus, there are $n_1n_2$ ways to do task1 then task2
+
+Use cases, when positions are limited and cannot repeat positions, e.g. offices/remove from limited pool
+
+## Sum Rule
+
+Task got $n_1$ ways of doing or $n_2$ ways of doing.  
+None of $n_1$ is same as $n_2$, i.e. mutually exclusive  
+Ways to do task = $n_1 +n_2$
+
+Use case, when only 1 "victor" e.g. elect 1 president. 8 males, 5 females, total options 13
+
+## Subtraction Rule
+
+Task can be done in either $n_1$ or $n_2$ ways or both.  
+Ways to do task = $n_1 + n_2$ - (ways common to $n_1$ and $n_2$)  
+$$|A_1 \cup A_2 |= |A_1| + |A_2| - |A_1 \cap A_2|$$
+
+use case, total 350, 220 in CS, 147 in business, 51 dual major in CS and business, find non-cs non-business
+
+## Division Rule
+
+Task can be done $n$ ways  
+For evey way $w$, there are exactly $d$ ways in $n$ that correspond to way $w$ (basically copies due to conditions)  
+Then, there are $\frac{n}{d}$ ways to do the task
+
+use case, conditional sequence, e.g. seating next to specific neightbours at square table  
+here you rotate clockwise is new arrangement but still same neighbour
+
+## Permutation
+
+define:  
+a permutation of a set of distinct objects is an **ORDERED** arrangement of these objects.  
+An ordered arrangement of r elements of a set is called an r-permutation (where $r < len(set)$)
+
+e.g.:  
+$S = \{1,2,3\}$
+
+Ordered arrangement $(3,1,2)$ is a permutation of S  
+Ordered arrangement $(3,2)$ is a 2-permutation of S  
+
+number of $r$-permutations of a set with $n$ elements is denoted by $P(n,r),\ \ ^nP_r,\ \ _nP_r$
+$$_nP_r = n(n-1)(n-2)...(n-r+1)$$
+$$=\frac{n!}{(n-r)}$$
+
+$_nP_0=1$ whenever n is a non-negative integer since only one way to order 0 elements
+
+1st 2nd 3rd place, 100 contestants  
+how many ways to choose winners  
+(can be seen as product rule or as permutations)
+$_{100}P_3 = 100*99*98 = 970\ 200$
+
+## Combinations
+
+An $r$-combination of a set is an **UNORDERED** selection of $r$ elements from the set.  
+Thus, an $r$-
+combination is simply a subset of the set, with the subset having $r$ elements.
+
+$S=\{1,2,3,4\}$
+$\{1,3,4\}$ is a 3-combination from $S$
+$\{4,1,3\}$ is the **SAME** 3-combination, since unordered
+
+Notation:  
+$r$-combinations of a set with $n$ distinct elements is denoted by:  
+$C(n,r),\ \ ^nC_r,\ \ _nC_r,\ \ (^n_r)$
+
+Theorem:  
+number of $r$-combinations of a set with $n$ elements, where $n$ is a non-negative integer and $r$ is an integer with $0\leq r\leq n$ is
+$$_nC_r = \frac{n!}{r!(n-r)!}$$
+
+Corollary  
+let $n$ and $r$ be non-negative integers with $r\leq n$  
+Then, $_nC_r = _nC_{n-r}$  
+Thus,
+$$_nC_r = \frac{n!}{r!(n-r)!}$$
+$$= _nC_{n-r}$$
+
+## Pigeonhole principle
+
+Theorem:  
+If $k+1$ or more objects are placed into $k$ boxes, then there is at least 1 box containing 2 or more objects  
+
+E.g.  
+Group of 367 people, must be at least 2 with same birthday, since only 366 possible birthdays  
+In any group of 27 English words, must be at least 2 that begin with the same letter
+
+## Generalised Pigeonhole principle
+
+Theorem (generalised Pigeonhole principle):  
+
+If $N$ objects placed into $k$ boxes, then there is at least 1 box containing at least $\lceil\frac{N}{k}\rceil$ objects  
+$\lceil\rceil$ is ceiling round, round up to nearest integer
+
+e.g. 6 computers in network, all connected to at least 1 other computer.  
+Show there are at least 2 computers that have the same number of connections.  
+"Holes" are num connections: 1,2,3,4,5  
+"Pigeons" are computers  
+$N=6,\ k=5$  
+$\lceil\frac{6}{5}\rceil=2$
+
+e.g. How many students in class to ensure 6 students get same grade out of (A,B,C,D or F)  
+$\lceil\frac{N}{5}\rceil=6$  
+$6\leq\lceil\frac{N}{5}\rceil<\frac{N}{5}+1$  
+$6\leq\frac{N}{5}+1$  
+$5\leq\frac{N}{5}$  
+$25\leq\N$  
+Ans: $26$
 
 
 # Tutorial 1 
@@ -484,3 +623,97 @@ $$lim_{n->∞} S_n = lim_{n->∞} \frac{a(1-r^n)}{1-r} = lim_{n->∞} \frac{1(1-
 ## example exam qn:  
 $$\displaystyle\sum_{j=0}^8 (3*2^j+(2+3j))$$
 $$\displaystyle\sum_{j=0}^8(3*2^j) + \displaystyle\sum_{j=0}^8(2+3j)$$
+
+
+# Tutorial 2
+
+first few qn are about modulo ops  
+middle few qn are about prime factorisationn
+last few qn is euclidian and exxtended euclidian
+
+## Q1
+
+normal long division to find remainder  
+or write out $a=qm+r$ into $r=a\mod{m}$
+
+## Q2
+
+$a≡b\mod{m}$ means
+$a\mod{m} = b\mod{m}$
+$a=qm+r$
+q can be any integer. Thus a can be -42,-15,12,39 or onwards
+since have constraint $0\leq a\leq26$
+
+## Q3
+
+Check remainder of both left and right portions of equation.
+if remainders do not match, then not congruent
+
+## Q4
+
+Brute forcce each mod in the bracckets first then add the two remainders  
+OR  
+use modulo arithmetic property (Addition) formula
+
+NOTE, following equation is incorrect application of the addition formula:  
+$(-133\mod{23})+(26\mod{23})=(-133+26)\mod{23}$  
+
+$(-133\mod{23})$, remainder is between 0 and 22  
+$(26\mod{23})$, remainder is between 0 and 22  
+BUT if add both remainders together, may result in value more than 23. so thats why need mod again
+
+it should be:  
+$(a+b)\mod{m} = ((a\mod{m})+(b\mod{m}))\mod{m}$
+
+## Q5
+
+Be careful of exponentiation and mutiplication property of modulo arithmetic
+
+## Q6
+
+any composite int will have at least 1 prime number divisor that is $\leq \sqrt{n}$
+
+Can prove if prime by checking if number mod all primes less than $\sqrt{n}$ = 0
+
+## Q7
+
+rather than do normal prime factorisation, you can check for first prime by using the modulo method,  
+e.g. 1001 mod 7 = 0  
+hence, 1001 = 7 * 143  
+then use the modulo method on 143 again to get 11 * 13  
+Thus, 1001 = 7 * 11 * 13  
+
+May need to prove all nums are prime  
+e.g. 1111 = 11 * 101, need to prove 101 is prime
+
+## Q8
+
+find all **factors** (not prime factors) of each number $n$ from 1 to $n$  
+This helps to prove GCD between 2 nums is 1
+
+e.g.  
+15: 1,3,5,15  
+11: 1,11  
+19: 1,19
+
+## Q9
+
+remember, GCD is min power of **common** prime factors  
+
+if number has no prime facctor, can do power 0 to represent easier  
+e.g.  
+$(3^5 * 5^5)=(2^0 * 3^5 * 5^5)$
+
+## Q10
+
+Prime factorise both numbers  
+find gcd and lcm.  
+prove with basic math that $gcd(a,b) * lcm(a,b) = ab$
+
+## Q11
+
+normal euclidian algo, just practice application
+
+## Q12
+
+when applying extended euclidian, be careful when simplifying and when making remainder the subject of the equation

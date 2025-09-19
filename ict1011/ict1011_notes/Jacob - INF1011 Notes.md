@@ -482,6 +482,8 @@ has 2 type of memory.
 1 bus and memmory for program  
 1 bus and memory for data
 
+If instruction memory and data memory share data bus, still considered Harvard architecture - Prof Kong Peng-Yong
+
 means can concurrently fetch next instruction and read/write from/to data memory at the same time
 
 Harvard architecture not common since cost expensive and space expensive (more bus and memory = more wire and space)
@@ -552,7 +554,7 @@ thus if MSP430 hang, restart computer wont help since the execution is on MSP430
 
 ## Tut 1
 
-Q1a: RISC, since is 1 instruction in few cycles  
+Q1a: CISC, since is 2 ops in 1 instruction   
 Q1b: CISC, since is multi op in 1 instruction  
 Q1c: RISC, since is 1 instruction  
 Q1d: CISC, since is multi clock in 1 instruction
@@ -579,6 +581,51 @@ Q4a: Arch 1 since have 22 parallel busses
 Q4b: none. need 1 clock to read info, and 1 clock to store info assuming no need clock cycle to process  
 Q4c: Arch 3, can read output in one cycle rather than write back to registers and read again from registers like arch 1 and 2
 
+ANS KEY:
+Q1: CISC, CISC, RISC, CISC
+Q2: SISD, SIMD, MIMD
+Q3:  
+Q3:
 
+Rating 1,2,3 - 1 best, 3 worst
 
+System cost: based on num buses and separate meory spaces
+Device cost: approx system cost
+Ease of programming: von Neuman, no separation of memory space/unique memory address. Easier to fetch next instruction if all in same memory.
+Pin count: tied to number of buses
+Performance, Pure harvard is faster since instruction and data can be fetched separately in one cycle
 
+CPU A:  
+- Von Neuman  
+- System cost 1=cheap: 1
+- Device cost 1=cheap: 1
+- Ease of programming 1=easiest: 1
+- Pin count 1=lowest: 1
+- performance 1=best: 2
+
+CPU B:  
+- Harvard
+- System cost 1=cheap: 2
+- Device cost 1=cheap: 2
+- Ease of programming 1=easiest: 2
+- Pin count 1=lowest: 1
+- performance 1=best: 2
+
+CPU C:  
+- Harvard
+- System cost 1=cheap: 3
+- Device cost 1=cheap: 3
+- Ease of programming 1=easiest: 2
+- Pin count 1=lowest: 2
+- performance 1=best: 1
+
+Q3 Extension: Arch CPU C
+
+Q4:
+Arch 1: 2 bus to ALU, results can be sent back using both
+Arch 2 one bus for all inputs and all outputs 
+Arch 3: one bus for all input and output. ALU has a bus from output back to one input
+
+4a : Arch 1
+4b : None
+4c : Arch 3 has dedicated bus for this but arch 1 is almost the same. Arch 2 is less effecient than both
