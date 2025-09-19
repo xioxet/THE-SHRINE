@@ -40,7 +40,7 @@ def LeapYearCalculator():
                CurrentYear = StartYear
                LeapYears = []
 
-               while not CurrentYear > EndYear:
+               while not CurrentYear >= EndYear:
                     if CurrentYear % 4 == 0 and str(CurrentYear)[2:4] != "00":
                          LeapYears.append(CurrentYear)
                     elif str(CurrentYear)[2:4] == "00" and CurrentYear % 400 == 0:

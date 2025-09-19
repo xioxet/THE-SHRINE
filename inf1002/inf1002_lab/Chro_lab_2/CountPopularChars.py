@@ -27,9 +27,15 @@ def CountPopularChars():
                chara.update({i:1})
           else:
                chara[i] = chara.get(i) + 1
-     chara = sorted(chara.items(),key=lambda item: (-item[1], item[0]))[:5]
 
+     #chara = sorted(chara.items(),key = chara.items(),key=lambda item: (-item[1], item[0]))[:5]
+     chara = sorted(chara.items(),key = SortByValueThenAscii)[:5]
+     
      print(f"{chara[0][0]}:{chara[0][1]},{chara[1][0]}:{chara[1][1]},{chara[2][0]}:{chara[2][1]},{chara[3][0]}:{chara[3][1]},{chara[4][0]}:{chara[4][1]}")
+
+def SortByValueThenAscii(item):
+     key, value = item
+     return(-value, key)
 
 if __name__=='__main__':
      CountPopularChars()

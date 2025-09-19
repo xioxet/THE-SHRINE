@@ -33,32 +33,41 @@ import sys
 # sys.argv[2] is the second argument, etc.
 def EvenOddCalculator():
        UserInput = sys.argv[1].split(",")
-       IntInput = []
+       CleanedInput = []
        EvenSum=0
        OddSum=0
        CountEven=0
        CountOdd=0
        try:
               for i in UserInput:
-                     IntInput.append(int(i))
+                     CleanedInput.append(int(i))
                      if int(i) % 2 == 0:
                             CountEven += 1
                             EvenSum += int(i)
                      else:
                             CountOdd += 1
-                            OddSum += int(i)           
-              IntInput.sort()
-              Smallest = IntInput[0]
-              Biggest = IntInput[-1]
-              IntInput.pop(0)
-              IntInput.pop(-1)
-              if IntInput.count(IntInput[0]) > 1 and IntInput[0] == Smallest:
-                     for i in range(IntInput.count(IntInput[0]) - 1):
-                            IntInput.count(IntInput[0])
-                            IntInput.remove(IntInput[0])
-              print(f"The sum of all even numbers is {EvenSum}, the sum of all odd numbers is {OddSum}, the difference between the biggest and smallest number is {Biggest-Smallest}, the total number of even numbers is {CountEven}, the total number of odd numbers is {CountOdd}, the centered average is {int(sum(IntInput) / len(IntInput))}.")
+                            OddSum += int(i)      
+
+              CleanedInput.sort()
+              Smallest = CleanedInput.pop(0)
+              Biggest =  CleanedInput.pop(-1)
+
+              if CleanedInput.count(CleanedInput[0]) > 1 and CleanedInput[0] == Smallest:
+                     RemoveDupe(CleanedInput[0], CleanedInput)
+                     #for i in range(CleanedInput.count(CleanedInput[0]) - 1):
+                            #CleanedInput.remove(CleanedInput[0])
+
+              if CleanedInput.count(CleanedInput[-1]) > 1 and CleanedInput[-1] == Biggest:
+                     RemoveDupe(CleanedInput[-1], CleanedInput)
+                     #for i in range(CleanedInput.count(CleanedInput[-1]) - 1):
+                            #CleanedInput.remove(CleanedInput[-1])
+              print(f"The sum of all even numbers is {EvenSum}, the sum of all odd numbers is {OddSum}, the difference between the biggest and smallest number is {Biggest-Smallest}, the total number of even numbers is {CountEven}, the total number of odd numbers is {CountOdd}, the centered average is {int(sum(CleanedInput) / len(CleanedInput))}.")
        except:
               print("Please enter valid integers.")
+
+def RemoveDupe(number, list):
+       for i in range(list.count(number) - 1):
+              list.remove(number)
 
 if __name__=='__main__':
        EvenOddCalculator()
