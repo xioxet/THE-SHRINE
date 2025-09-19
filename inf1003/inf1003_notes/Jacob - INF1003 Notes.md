@@ -37,8 +37,8 @@ $$= \frac{n(a_1+a_n)}{2}$$
 Geometric Series Summation  
 General Formula: 
 $$a_n = ar^{n-1}$$
-Summation Formula:  
-$$S_n = \frac{a(1 - r^n)}{1 - r} $$
+Summation Formula:  $$S_n = \frac{a(1 - r^n)}{1 - r} $$
+$$ = \frac{a(r^n)-1}{r-1} $$
 
 Infinite Summation 
 $$S_∞=\frac{a}{1-r},\ \ \ \ when |r|<1,$$
@@ -109,7 +109,7 @@ $= \frac{100[1+100]}{2}$
 $= 5050$
 
 **Geometric Series Summation**  
-when n < ∞ :$$S_n = \frac{a(r^n-1)}{r-1}$$
+when n < ∞ :$$S_n = \frac{a(r^n-1)}{r-1} $$
 
 when n approach ∞:
 $$lim_{n->∞},\ \ \ S_n = \frac{a}{r-1}$$
@@ -189,7 +189,6 @@ a divides b means b/a no remainder
 a does not divide b means b/a have remainder
 
 $$a = d*q+r$$
-
  a is dividen, d is divisor, q is quotient, r is remainder
 
 ## Division Algorithm
@@ -213,11 +212,11 @@ $a \mod{m} = b \mod{m}$
 
 **Theorem**  
 - let $m$ be +ve int  
-- if $a ≡ b \mod m$ and $c ≡ d \mod m$
+- if $a ≡ b \mod{m}$ and $c ≡ d \mod{m}$
 - then  
-- $a + c ≡ b + d (\mod{m})$  
+- $$a + c ≡ b + d (\mod{m})$$
 - and  
-- $a*c = b*d (\mod{m})$
+- $$a*c = b*d (\mod{m})$$
 
 Other equations:
 - $(a+b)\mod{m} = ((a\mod{m})+(b\mod{m}))\mod{m}$
@@ -241,7 +240,7 @@ every int $> 1$ can be written uniquely as a prime or as a product of 2 or more 
 
 **Theorem**  
 if $n$ is composite int,  
-then n has prime divisor $\leq \sqrt n$
+then n has prime divisor $\leq \sqrt{n}$
 
 ^ can use theorem to check is num is prime, using brute force method called trial division
 divide n by all primes no exceeding $\sqrt n$  
@@ -302,7 +301,7 @@ $gcd(a,b) * lcm(a,b) = ab$
 ### Lemma
 
 Let $a = dq+r$  
-where $a$, $d$, $q$ and $r$ are int,
+where $a$, $d$, $q$ and $r$ are int,  
 
 Then, $$gcd(a,d) = gcd(d,r)$$  
 
@@ -369,7 +368,7 @@ simplify
 
 $$=4(252)+(-5)(198)$$
 
-Hence,  
+Hence,
 
 $$s=4, t=-5$$
 
@@ -623,7 +622,6 @@ $$lim_{n->∞} S_n = lim_{n->∞} \frac{a(1-r^n)}{1-r} = lim_{n->∞} \frac{1(1-
 ## example exam qn:  
 $$\displaystyle\sum_{j=0}^8 (3*2^j+(2+3j))$$
 $$\displaystyle\sum_{j=0}^8(3*2^j) + \displaystyle\sum_{j=0}^8(2+3j)$$
-
 
 # Tutorial 2
 

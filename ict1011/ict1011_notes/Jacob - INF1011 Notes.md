@@ -1,4 +1,4 @@
-Assesments
+# Assesments
 
 - lab quiz: 30
 >- lab 2: 5%
@@ -554,7 +554,7 @@ thus if MSP430 hang, restart computer wont help since the execution is on MSP430
 
 ## Tut 1
 
-Q1a: CISC, since is 2 ops in 1 instruction   
+Q1a: RISC, since is 1 instruction in few cycles  
 Q1b: CISC, since is multi op in 1 instruction  
 Q1c: RISC, since is 1 instruction  
 Q1d: CISC, since is multi clock in 1 instruction

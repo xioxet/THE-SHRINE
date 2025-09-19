@@ -1,4 +1,4 @@
-# Topic 1: Digital Age
+# Lecture 1: Digital Age
 
 ## Computers through the ages
 
@@ -81,7 +81,7 @@ Usually 8, 10, 12, 16, 24
 
 
 
-# Topic 2: Number systems
+# Lecture 2: Number systems
 
 ## Positional Number systems
 
