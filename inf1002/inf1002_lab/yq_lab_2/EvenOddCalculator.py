@@ -45,7 +45,7 @@ def EvenOddCalculator():
     for number in all_numbers:
         if number % 2 == 0:
             even.append(number)
-        elif number % 2 != 0:
+        else:
             odd.append(number)
 
     even_sum = sum(even)
