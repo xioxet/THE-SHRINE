@@ -1,4 +1,4 @@
-Assesments
+# Assesments
 
 - lab quiz: 30
 >- lab 2: 5%
@@ -482,6 +482,8 @@ has 2 type of memory.
 1 bus and memmory for program  
 1 bus and memory for data
 
+If instruction memory and data memory share data bus, still considered Harvard architecture - Prof Kong Peng-Yong
+
 means can concurrently fetch next instruction and read/write from/to data memory at the same time
 
 Harvard architecture not common since cost expensive and space expensive (more bus and memory = more wire and space)
@@ -535,6 +537,251 @@ thus if MSP430 hang, restart computer wont help since the execution is on MSP430
 
 ## Instruction Set Architecture (Chpt 3)
 
+### Microprocessors (μP) vs Microcontrollers (μC)
+
+Micro**processor**:
+- Forms core of system  
+- has external memory and I/O support to provide op capabilities  
+- many mordern day desktops are microprocessor based systems
+
+Micro**controller** (MCU or μC)
+- has built-in memory and I/O support
+- give rise to compact operational system
+
+### Microcontrollers (μC) properties
+
+- Integration: Able to implement a whole design onto a single chip.
+- Cost: Are usually low-cost devices (a few $ each);
+- Clock frequency: Compared with other devices (microprocessors
+and DSPs), MCUs use a low clock frequency:
+- - MCUs today run up to 100 MHz/100 MIPS (Million Instructions Per Second).
+- Power consumption: Low power (battery operation);
+- Bits: 4 bits (older devices) to 32 bits devices;
+- Memory: Limited available memory, usually less than 1 MByte;
+- Input/Output (I/O): Low to high (8 to 150) pin-out count.
+
+### MSP430 Characteristics and Architecture  
+Low power consumption:  
+- 0.1 μA for RAM data retention;  
+- 0.8 μA for real-time clock mode operation;  
+- 250 μA/MIPS during active operation.  
+
+16-bit internal architecture, a 16-bit external data bus.  
+
+is a Von-Neumennarchitecture - common bus to all memory and peripherals  
+
+MAB - Memory Address Bus  
+MAB 16 = 16bit Address Bus
+
+MDB - Memory Data Bus  
+MDB 16 = 16bit Data Bus
+
+![MSP430-micro-architecture](MSP430-micro-architecture.png)
+
+16 bit RISC CPU
+- 27 core instrucction *(8 jump, 7 single and 12 double-operand instructions)*
+- 7 addressing modes
+- 8/16-bit instruction addressing format
+Memory architecture
+- 16 16-bit registers *(4 dedicated-use and 12 general registers)*
+- 16-bit Arithmetic Logic Unit (ALU)
+- 16-bit data bus *(8-bit addressability aka can fatch as byte of as word)*
+- Supports 8/16-bit peripherals
+- Address bus size is dependent on model
+
+R0 - R15 connected in parallel to ALU, fast transfer in 1 cycle  
+allows direct tranfer of data from meory without passing through register  
+allows memory to memory transfer as well  
+constant generator - store commonly used numbers in register to reduce clock cycles from accessing main memory  
+16 bit ALU  
+MCLK (Master) clock signal drives the CPU  
+
+R0 = Program Counter **(PC)**
+R1 = Stack pointer **(SP)**
+R2 = Status Register **(SR)**
+R3 / R2 = Constant Generator **(R2 = CG1, R3 = CG2)**
+
+R4-R15 - General Purpose Regiester (aka working register)
+
+R0-R15 are user accessible, be careful where you write
+R4-R15: single-cycle, general purpose and identical in all aspects, used for math,storage and addressing modes
+
+### Program Counter
+16 bit  
+Each instruction uses an evven number of bytes (2 4 6) and PC is incremented accordingly  
+Instruction accesses on the address space are performed on word boundaries, PC will treat 0 as 0 ans is aligned to even addresses  
+Can be addressed by all instructions and all addressing modes
+
+### Stack Pointer
+
+store the return addresses of subroutine calls and interrupts.  
+It also can be used to store local data.  
+pre-decrement, post-increment scheme  
+
+pre decrement: decrrement SP then write
+post increment: pop then increment SP (does not clear popped value at popped memory address)  
+
+means can dig through memory even after stacck has been "cleaned" without restart
+
+### Status Register R2
+
+when used as src or dst register, can only be used in egister mode, can only be addressed with word instructions
+
+V,N,Z,C flags  
+- 15-9 reserved  
+- 8 (V) Overflow flag  
+- 7 (SCG1) System cclock generator 1, when == 1, turn off SMCLK  
+- 6 (SCG0) System cclock generator 0, when == 1, turn off DCO dc generator, if DCOCLK is not used for MCLK or SMCLK  
+- 5 (OSCOFF) Oscillator Off, when == 1, turn off LFXT1 crystal oscillator, when LFXT1CLK is not used for MCLK or SMCLK  
+- 4 (CPUOFF) CPU off, when == 1, turn off CPU  
+- 3 (GIE) General Interrupt enable, when == 1, enables maskable interrupts, when == 0 all maskable interrupts disabled  
+- 2 (N) Negative Flag  
+- 1 (Z) Zero Flag  
+- 0 (C) Carry Flag  
+
+### Constant generators R2 / R3
+
+Has way to store certain numbers  
+has useful numbers e.g. for standard incrementation
+![constant-generator](MSP430-constant-generators.png)
+reduce requierment to store and fetch commonly used constants  
+useful for reducing cycles as part of fetch-decode-execute
+
+### Working Registers
+
+can be used as data register, data pointers, indices  
+accessed as either byte or word  
+supports word and byte ops  
+
+When accessed as byte as src, lower byte is used (15-8 high byte, 7-0 low byte)
+
+When accessed as byte as dst, higher byte is set to 0
+
+### Memory
+
+MSP430 is Little endian
+Word alignment
+- Bytes located at even OR odd addresses
+- Words ONLY located at even addresses
+- if tell to access word at odd address, will go to lower address e.g. access word at 0x0205h, will access from 0x0204h  
+
+e.g.  
+|0x3004 | H'9A | 
+|0x3003 | H'78 | 
+|0x3002 | H'34 | 
+|0x3001 | H'12 |
+
+MOV.B &3000h, R8
+- Register R8 will have a value of H’12.
+
+MOV.W &3000h, R9
+- Register R9 will have a value of H’3412.
+- (MOV.W &3001h, R9 will produce the same result)
+
+### Memory Map
+
+MSP430 Memory:
+- Unified Memory map (program or data)  
+- no paging at all
+
+FOR MSP430:  
+![memory-map](MSP430-memory-map.png)
+
+### Machine code + ASSEMBLY INSTRUCTIONS
+
+have 1 and 2  word instructions
+
+|Op-code | Instruction |     Type      |
+|:-------|:-----------:|--------------:|
+|  0000  |  undefined  | Single Operand|
+|  0001  | RCC, SWPB, RRA, SXT, PUSH, CALL, RETI | Single Operand|
+|  0010  | JNE, JEQ, JNC, JC |  Jumps  |
+|  0011  | JN, JGE, JL, JMP |   Jumps  |
+|  0100  |     MOV     | Double Operand|
+|  0101  |     ADD     | Double Operand|
+|  0110  |     ADDC    | Double Operand|
+|  0111  |     SUBC    | Double Operand|
+|  1000  |     SUB     | Double Operand|
+|  1001  |     CMP     | Double Operand|
+|  1010  |     DADD    | Double Operand|
+|  1011  |     BIT     | Double Operand|
+|  1100  |     BIC     | Double Operand|
+|  1101  |     BIS     | Double Operand|
+|  1110  |     XOR     | Double Operand|
+|  1111  |     AND     | Double Operand|
+
+
+e.g. memory = 0100 0101 0000 0100 [mov.w r5, r4]
+
+instruction set (single and double operands) supports 3 data types: Bit, Byte(8bit, .b), Word(16bit, .w)
+
+by default if no suffix, trreted as .w
+
+instruction format:
+Double operand instrutions
+- |  0000  | 0000  | 0  |  0  | 00 | 0000  |
+- |:------:|:-----:|:--:|:---:|:--:|:-----:|
+- |Op-code | S-reg | Ad | B/W | As | D-Reg |
+
+- src: source operand address, as defined in **As and S-reg**;
+- dst: destination operand address, as defined in **Ad and D-reg**;
+- As: addressing bits used to define the addressing mode used by
+the source operand;
+- S-reg: register used by the source operand;
+- Ad: Addressing bits used to define the addressing mode used by
+the destination operand;
+- D-reg: register used by the destination operand;
+- B/W: word or byte access definition bit. (0:16-bits, 1: 8-bits)
+
+Single operand instrutions
+- |0000 0000 0 | 0 | 00 | 0000 |
+- |:----------:|:-:|:--:|:----:|
+- |  Op-code   |B/W| Ad | D-Reg|
+
+RRC (Rotate Right Carry) operation:
+shift bits right 1, carry bit to MSB, LSB shifted out replace carry  
+TBC
+
+jump ops
+- |  000   |    000    |          00 0000 0000          |
+- |:------:|:---------:|:------------------------------:|
+- |Op-code | Condition | 10bit, 2's complement PC Offset|
+
+Conditions  
+- 000: jump if not equal (Z = 0)
+- 001: jump if equal (Z=1)
+- 010: jump if carry flag equal to zero (C = 0)
+- 011: jump if carry flag equal to one (C = 1)
+- 100: jump if negative (N = 1)
+- 101: jump if greater than or equal (N = V)
+- 110: jump if lower (N != V)
+- 111: unconditional jump
+
+jumps execcuted based on current PC and status register  
+conditinoal jump controlled by status bits  
+Jump range: -511 to +512 words OR -1022 to 1024 bytes, from current instrucction  
+jump offset usage:  
+PC(new) = PC(old) + 2 + (PC(offset) * 2), where PC(old) is address of jump  
+(PC(old) + 2) is normal PC increment  
+(PC(offset) * 2) is additional increment or decrement if condition fulfilled
+
+### Addressing modes
+
+Opcode tells ALU what op to do, **BUT** dependant on addressing mode  
+source operand : 7 addressing modes
+destination operand : 4 address modes
+operands can be in any memory space address (be aware of effects of things like R0-R3)
+Addressing modes selected by **As** and **Ad**
+
+
+
+
+
+
+
+
+
+
 ## Low-level programming (Chpt 4-6)
 
 
@@ -579,6 +826,51 @@ Q4a: Arch 1 since have 22 parallel busses
 Q4b: none. need 1 clock to read info, and 1 clock to store info assuming no need clock cycle to process  
 Q4c: Arch 3, can read output in one cycle rather than write back to registers and read again from registers like arch 1 and 2
 
+ANS KEY:
+Q1: CISC, CISC, RISC, CISC
+Q2: SISD, SIMD, MIMD
+Q3:  
+Q3:
 
+Rating 1,2,3 - 1 best, 3 worst
 
+System cost: based on num buses and separate meory spaces
+Device cost: approx system cost
+Ease of programming: von Neuman, no separation of memory space/unique memory address. Easier to fetch next instruction if all in same memory.
+Pin count: tied to number of buses
+Performance, Pure harvard is faster since instruction and data can be fetched separately in one cycle
 
+CPU A:  
+- Von Neuman  
+- System cost 1=cheap: 1
+- Device cost 1=cheap: 1
+- Ease of programming 1=easiest: 1
+- Pin count 1=lowest: 1
+- performance 1=best: 2
+
+CPU B:  
+- Harvard
+- System cost 1=cheap: 2
+- Device cost 1=cheap: 2
+- Ease of programming 1=easiest: 2
+- Pin count 1=lowest: 1
+- performance 1=best: 2
+
+CPU C:  
+- Harvard
+- System cost 1=cheap: 3
+- Device cost 1=cheap: 3
+- Ease of programming 1=easiest: 2
+- Pin count 1=lowest: 2
+- performance 1=best: 1
+
+Q3 Extension: Arch CPU C
+
+Q4:
+Arch 1: 2 bus to ALU, results can be sent back using both
+Arch 2 one bus for all inputs and all outputs 
+Arch 3: one bus for all input and output. ALU has a bus from output back to one input
+
+4a : Arch 1
+4b : None
+4c : Arch 3 has dedicated bus for this but arch 1 is almost the same. Arch 2 is less effecient than both
